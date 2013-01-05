@@ -12,7 +12,7 @@ class Loginmodel extends CI_Model{
         
         // Prep the query
         $this->db->where('username', $username);
-        $this->db->where('password', $password);
+        $this->db->where('password', sha1($password));
         
         // Run the query
         $query = $this->db->get('users');

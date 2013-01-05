@@ -154,7 +154,10 @@
 	   
     }
 	
-	
+	function advanced_search_view() {
+		$data['title'] =  "advanced search";
+		$this->load->view('advancedsearch_form', $data);
+	}
 	
 	function advanced_search() {
 		$this->load->model('databasemodels');

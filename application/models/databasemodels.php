@@ -35,7 +35,7 @@ class Databasemodels extends CI_Model {
 	
  }
  
-  function advanced_search ($firstname = null,$lastname = null,$department = null,$title = null){
+	function advanced_search ($firstname = null,$lastname = null,$department = null,$title = null){
  
  // result query
 	$q = $this->db->select('employees.first_name AS firstname, employees.last_name AS lastname, employees.birth_date, employees.gender, employees.hire_date, titles.title AS jobtitle, departments.dept_name AS dept, departments.dept_no AS deptid, salaries.salary')

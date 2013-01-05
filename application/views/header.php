@@ -14,4 +14,4 @@
 <?php else : ?>
 <a href="<?php echo site_url('hr/do_logout') ?>"> Logout </a>
 <?php endif; ?>
-</header>
+</header>	
