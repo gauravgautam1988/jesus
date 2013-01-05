@@ -21,6 +21,7 @@
 			<th>Department Name </th>
 			<th>Department Number </th>
 			<th>Title</th>
+			<th>Is Manager</th>
 			<th>DOB </th>
 			<th>Salary</th>
 			<th>Gender </th>
@@ -37,6 +38,7 @@
 					<td><?php echo $val->dept ?></td>
 					<td><?php echo $val->deptid ?></td>
 					<td><?php echo $val->jobtitle ?></td>
+					<td><?php echo $val->ismanager == 1 ? 'yes' : 'no' ?>
 					<td><?php echo $val->birth_date ?></td>
 					<td><?php echo $val->salary ?></td>
 					<td><?php echo $val->gender ?></td>

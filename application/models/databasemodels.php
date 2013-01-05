@@ -47,7 +47,8 @@ class Databasemodels extends CI_Model {
 			->join('salaries', 'salaries.emp_no = employees.emp_no')
 			->join('dept_manager', 'dept_manager.emp_no = dept_emp.emp_no','left')
 			->where('titles.to_date', '9999-01-01')
-			->where('dept_emp.to_date', '9999-01-01');
+			->where('dept_emp.to_date', '9999-01-01')
+			->where('salaries.to_date', '9999-01-01');
 			if (!empty($firstname)) {
 			$this->db->where('employees.first_name', $firstname);
 			}
