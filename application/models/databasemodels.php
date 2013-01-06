@@ -5,8 +5,8 @@ class Databasemodels extends CI_Model {
 		parent::__construct();
 	}
  function search ($firstname,$lastname,$department,$title){
+ /* this function allows normal search to be carried out. Its joing all the required tables by keys */
  
- // result query
 	$q = $this->db->select('employees.first_name AS firstname, employees.last_name AS lastname, titles.title AS jobtitle, departments.dept_name AS dept, departments.dept_no AS deptid')
 			->select('IF(`dept_manager`.`emp_no` = `employees`.`emp_no`, 1, 0) AS ismanager', false)
 			->from('employees')
@@ -28,16 +28,16 @@ class Databasemodels extends CI_Model {
 			if (!empty($title)) {
 			$this->db->where('titles.title', $title);
 			}
-		//count
+		
 		$resultq['rows'] = $q->get()->result();
 		//$resultq['num_rows'] = $q->count_all_results();
-		return $resultq;
+		return $resultq; // returns the result
 	
  }
- 
+ /* This function allows advanced search to show the result including salary, is manager, gender,DOB,hire date and department number.Not done in JSON  */
 	function advanced_search ($firstname = null,$lastname = null,$department = null,$title = null){
  
- // result query
+ 
 	$q = $this->db->select('employees.first_name AS firstname, employees.last_name AS lastname, employees.birth_date, employees.gender, employees.hire_date, titles.title AS jobtitle, departments.dept_name AS dept, departments.dept_no AS deptid, salaries.salary')
 			->select('IF(`dept_manager`.`emp_no` = `employees`.`emp_no`, 1, 0) AS ismanager', false)
 			->from('employees')
@@ -61,14 +61,12 @@ class Databasemodels extends CI_Model {
 			if (!empty($title)) {
 			$this->db->where('titles.title', $title);
 			}
-		//count
-		//$resultq['num_rows'] = $q->count_all_results();
+	
 		return $q->get()->result();
 	
  }
 
-
- 
+//adds new employee by their id and to their department
  public function add_employeedepartment($employeeid, $department){
  $fields = array (
 		'emp_no' => $employeeid,
@@ -128,13 +126,8 @@ public function add_employee($firstname, $lastname, $gender, $DOB, $department, 
 	$this->add_employeedepartment($employeeid, $department);
 	$this->add_employeesalary($employeeid, $salary);
 	$this->add_employeetitle($employeeid, $title);
-
-
-
-
-
 }
-
+//deletes employee
 public function delete_employee($employeeno){
 $tables = array ('employees', 'dept_manager','dept_emp','titles','salaries');
 		
@@ -145,7 +138,7 @@ $tables = array ('employees', 'dept_manager','dept_emp','titles','salaries');
 
 }
  
- 
+ // changes title 
  public function change_title($employeeno,$oldtitle,$newtitle){
 	$updatetitle = array ('to_date' => date("Y-m-d"));
 	$query = $this->db->where('emp_no', $employeeno)
@@ -165,6 +158,7 @@ $tables = array ('employees', 'dept_manager','dept_emp','titles','salaries');
 		
 		
 }
+ 
  
  public function gettitlebyid($employeeno){
 	

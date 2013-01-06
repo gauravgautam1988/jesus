@@ -9,6 +9,7 @@ class Find extends CI_Controller {
 	
 	$this->load->view('databaseview', $data);
 	}
+	//this displays the result in json format
 	function findemp () {
 	
 	$firstname = $this->input->get('firstname');
@@ -19,11 +20,11 @@ class Find extends CI_Controller {
 	$results= $this->databasemodels->search($firstname,$lastname,$department,$title);
 	
 	$data['count'] = count($results['rows']);
-	$data['results'] = $results['rows']; // inside array
+	$data['results'] = $results['rows']; 
 	
-	echo json_encode($data);
+	echo json_encode($data); //echos out json
 	
-	//$this->load->view('databaseview', $data);
+	
 	}
 	
 	

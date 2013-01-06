@@ -1,7 +1,7 @@
 <?php $this->load->view ('header')?>
 
     <div id='login_form'>
-        <form action='https://localhost/ecwm604/index.php/login/process' method='post' name='process'>
+        <form action='https://localhost/ecwm604/index.php/login/process' method='post' name='process'> <!-- -->
 		<?php #echo site_url('login/process');?>
             <h2>User Login</h2>
             <br />            

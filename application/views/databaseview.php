@@ -24,7 +24,7 @@ border:1px solid black;
 	<table class="search_results">
 	
 		<thead>
-		<tr>
+		<tr> <!--The result table view-->
 			<th>First name  </th>
 			<th>Last Name</th>
 			<th>Department Name </th>

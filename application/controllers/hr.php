@@ -8,7 +8,7 @@
     }
     
     public function index(){
-        // If the user is validated, then this function will run
+        // Loads hr homepage
        
 		 $data ['title'] =  "hr";
 		 
@@ -17,19 +17,18 @@
     
 	
 	public function addprocess(){
-     
+     // sets up validation rules
 	 $this->load->library('form_validation');
 	 
 	    $this->form_validation->set_rules('firstname', 'First Name', 'required');
 	    $this->form_validation->set_rules('lastname', 'Last Name', 'required'); 
 	    $this->form_validation->set_rules('gender', 'Gender', 'required');  
-	   // $this->form_validation->set_rules('gender', 'Gender', 'required'); 
 		$this->form_validation->set_rules('DOB', 'D.O.B.', 'required');
 		$this->form_validation->set_rules('department', 'Department', 'required');
 		$this->form_validation->set_rules('title', 'Title', 'required');
 	    $this->form_validation->set_rules('salary', 'Salary', 'required');
 	  
-	  
+	  // if the validation is false goes back to from
 	   if ($this->form_validation->run() == FALSE)
       {
          $this->add_employee();
@@ -49,28 +48,17 @@
 		$this->databasemodels->add_employee($firstname, $lastname, $gender, $DOB, $department, $title, $salary);
         $this->load->view('addedemployee');
       }
-	  
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	  
-	  
+	    
     }
-	
+	// loads the add employee form
 	public function add_employee(){
 	
 	 $data ['title'] =  "Add Employee";
 	 $this->load->view('add_form',$data);
-	 
-	   
-	   
+	    
     }
 	
-	
+	// process the delete function
 	public function deleteprocess(){
      
 	 $this->load->library('form_validation');
@@ -94,7 +82,7 @@
 	 
 	 }
 	
-	
+	// loads delete employee form
 	public function delete_employee(){
 	
 	 $data ['title'] =  "Delete Employee";
@@ -102,21 +90,7 @@
 	    
     }
 	
-	
-	
-	
-	
-	public function promote_employee(){
-	
-	 $data ['title'] =  "Promote Employee";
-	 $this->load->view('promote_form',$data);
-	 
-	   
-	   
-    }
-	
-	
-	
+	// process for changing job title
 	public function changejobtitleprocess(){
 	
 		$this->load->library('form_validation');
@@ -139,26 +113,21 @@
 		}
 	}
 	
-	
-	
-	
-	
-	
-	
+	// loads change title form
 	public function change_title(){
 	
 	 $data ['title'] =  "Change Title";
 	 $this->load->view('changetitle_form',$data);
-	 
-	   
 	   
     }
 	
+	// loads advance search view form
 	function advanced_search_view() {
 		$data['title'] =  "advanced search";
 		$this->load->view('advancedsearch_form', $data);
 	}
 	
+	//does all the functionality for advanced search
 	function advanced_search() {
 		$this->load->model('databasemodels');
 		
@@ -174,15 +143,13 @@
 		$this->load->view('advancedsearch_form', $data);
 	}
 	
-	
-	
-	
-	
+	// checks if validated
     private function check_isvalidated(){
         if(! $this->session->userdata('validated')){
             redirect('login');
         }
     }
+	// destroys session and logs out
 	 public function do_logout(){
         $this->session->sess_destroy();
         redirect('login');
